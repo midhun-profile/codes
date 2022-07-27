@@ -1,0 +1,28 @@
+@RestController
+
+@CrossOrigin
+public class studentcontroller {
+	
+	@Autowired
+	private studentrepo studentrepo;
+	
+	@PostMapping("/create")
+	public void createstudent(@RequestBody student student) {
+		
+		studentrepo.insert(student);
+	}
+	
+	@PostMapping("/delete/(id)")
+    public void deletestudent(@PathVariable String id) {
+		studentrepo.deleteById(id);
+		
+	}
+
+      @GetMapping("/list")
+    public  List<student> liststudent() {
+	     
+    	return studentrepo.findAll();
+	
+       }
+
+}
